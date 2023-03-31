@@ -1,0 +1,19 @@
+provider "google" {
+    project = "	gcp-terraform-project-382316"
+    region = "europe-west3"
+    credentials = "${file("gcp-terraform-project-382316-bcb6fa067984.json")}"
+    }
+    resource "google_compute_instance" "test-network" {
+        name = "dwbivm"
+        machine_type = "f1-micro"
+        zone = "europe-west3-a"
+        boot_disk {
+            initialize_params {
+                image = "debian-GNU/debian-11"
+                            }
+        }
+        network_interface {
+            network = "default"
+            access_config {}
+        }
+    }
